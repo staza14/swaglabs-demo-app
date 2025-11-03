@@ -10,6 +10,7 @@ import SwagLabsFooter from "../components/Footer";
 import "./InventoryItem.css";
 import BrokenComponent from "../components/BrokenComponent";
 import { ErrorBoundary } from "@backtrace-labs/react";
+import getImage from "../utils/imageLoader";
 
 const InventoryItem = (props) => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const InventoryItem = (props) => {
   }
 
   item.id = inventoryId;
+  const imgSrc = getImage(item.image_url);
 
   const [itemInCart, setItemInCart] = useState(
     ShoppingCart.isItemInCart(inventoryId)
@@ -160,7 +162,7 @@ const InventoryItem = (props) => {
                 <img
                   alt={item.name}
                   className="inventory_details_img"
-                  src={require(`../assets/img/${item.image_url}`).default}
+                  src={imgSrc}
                   data-test={`item-${item.name
                     .replace(/\s+/g, "-")
                     .toLowerCase()}-img`}

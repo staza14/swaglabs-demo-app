@@ -6,6 +6,7 @@ import { isErrorUser, isProblemUser } from "../utils/Credentials";
 import "./InventoryListItem.css";
 import { ROUTES } from "../utils/Constants";
 import Button, { BUTTON_SIZES, BUTTON_TYPES } from "./Button";
+import getImage from "../utils/imageLoader";
 
 const InventoryListItem = (props) => {
   const {
@@ -19,6 +20,8 @@ const InventoryListItem = (props) => {
     price,
   } = props;
   const [itemInCart, setItemInCart] = useState(ShoppingCart.isItemInCart(id));
+  const imgSrc = getImage(image_url);
+
   /**
    * @TODO:
    * This can't be tested yet because enzyme currently doesn't support ReactJS17,
@@ -119,7 +122,7 @@ const InventoryListItem = (props) => {
           <img
             alt={name}
             className="inventory_item_img"
-            src={require(`../assets/img/${image_url}`).default}
+            src={imgSrc}
             data-test={`inventory-item-${name
               .replace(/\s+/g, "-")
               .toLowerCase()}-img`}
@@ -195,11 +198,11 @@ InventoryListItem.propTypes = {
    */
   price: PropTypes.number.isRequired,
   /**
-   * Whether or not the item is aligned right
+   * Whether the item is aligned right
    */
   isTextAlignRight: PropTypes.bool.isRequired,
   /**
-   * Whether or not the the button is misaligned
+   * Whether the button is misaligned
    */
   missAlignButton: PropTypes.bool.isRequired,
 };
