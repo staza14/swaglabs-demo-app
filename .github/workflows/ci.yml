@@ -24,3 +24,13 @@ jobs:
 
       - name: Build app
         run: CI=false npm run build
+
+      - name: Trigger AccelQ Job
+        env:
+          ACCELQ_API_KEY: ${{ secrets.ACCELQ_API_KEY }}
+        run: |
+          curl --location --request POST "https://poc.accelq.io/awb/api/2.0/poc25/MercatorTrialProject/test-exec/jobs/templates/505680/run" \
+               --header "user_id: anastasia.florentis@mercator.group" \
+               --header "api_key: $ACCELQ_API_KEY" \
+               --header "Content-Type: application/json"
+
