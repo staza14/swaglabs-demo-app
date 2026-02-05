@@ -122,7 +122,7 @@ function Login(props) {
                   // but is there for backwards compatibility
                   customClass="btn_action"
                   testId="login-button"
-                  value="Sign In"
+                  value="Sign in to Sauce Demo"
                 />
               </form>
             </div>
